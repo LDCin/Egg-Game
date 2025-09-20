@@ -4,4 +4,5 @@ public static class GameConfig
     // - SO
     // + MAP
     public static string CELL_PATH = "SO/CellDatas/";
+    public static string EGG_PATH = "SO/EggDatas/";
 }

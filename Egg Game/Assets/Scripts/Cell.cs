@@ -17,4 +17,8 @@ public class Cell : MonoBehaviour
     {
         return _spriteRenderer.bounds.size.x;
     }
+    public void SetSortingOrder(int sortingOrder)
+    {
+        _spriteRenderer.sortingOrder = sortingOrder;
+    }
 }

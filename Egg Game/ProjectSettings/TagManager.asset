@@ -44,3 +44,9 @@ TagManager:
   - name: Map
     uniqueID: 1729095201
     locked: 0
+  - name: Cell
+    uniqueID: 23350677
+    locked: 0
+  - name: Egg
+    uniqueID: 656382467
+    locked: 0
