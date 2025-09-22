@@ -5,6 +5,7 @@ using UnityEngine;
 public class EggController : MonoBehaviour
 {
     private int _id;
+    private int _level;
     private SpriteRenderer _spriteRender;
     private Animator _animator;
     public void SetUp(int id, Sprite sprite, RuntimeAnimatorController eggAnimation)
