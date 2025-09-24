@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class EggPool : MonoBehaviour
 {
-    private EggController _eggPrefabs;
+    // SIZE
+    private int _poolSize;
+    [SerializeField] private int _quantityForEachEgg;
+
+    // LIST EGG
+    [SerializeField] private EggController _eggPrefabs;
     private List<EggData> _eggDatas;
     private List<EggController> _eggs;
-    private int _poolSize = 25;
-    private int _quantityForEachEgg;
 
     private void Awake()
     {
-        _quantityForEachEgg = _poolSize / 2;
         _eggDatas = new List<EggData>(Resources.LoadAll<EggData>(GameConfig.EGG_PATH));
+        _poolSize = _eggDatas.Count * _quantityForEachEgg;
         InitEggList();
     }
     public int GetPoolSize()
@@ -26,19 +29,20 @@ public class EggPool : MonoBehaviour
 
         foreach (var eggData in _eggDatas)
         {
-            EggController egg = Instantiate(_eggPrefabs);
             for (int i = 0; i < _quantityForEachEgg; i++)
             {
+                EggController egg = Instantiate(_eggPrefabs);
                 egg.SetUp(eggData.id, eggData.sprite, eggData.eggAnimation);
+                egg.gameObject.SetActive(false);
+                _eggs.Add(egg);
             }
-            _eggs.Add(egg);
         }
     }
-    private EggController HasAvailableEgg()
+    private EggController HasAvailableEgg(int id)
     {
         foreach (var egg in _eggs)
         {
-            if (!egg.gameObject.activeInHierarchy)
+            if (!egg.gameObject.activeInHierarchy && egg.GetID() == id)
             {
                 Debug.Log("Found Available Egg");
                 return egg;
@@ -46,13 +50,14 @@ public class EggPool : MonoBehaviour
         }
         return null;
     }
-    private EggController GetEgg(int id)
+    public EggController GetEgg(int id)
     {
-        EggController egg = HasAvailableEgg();
-        if (HasAvailableEgg() != null)
+        EggController egg = HasAvailableEgg(id);
+        if (egg != null)
         {
             return egg;
         }
+        Debug.LogError($"EggPool: Không tìm thấy EggData với id = {id}");
         foreach (var eggData in _eggDatas)
         {
             if (eggData.id == id)
@@ -65,4 +70,11 @@ public class EggPool : MonoBehaviour
         }
         return egg;
     }
+    public int GetRandomEggId()
+    {
+        if (_eggDatas.Count == 0) return -1;
+        int index = Random.Range(0, _eggDatas.Count);
+        return _eggDatas[index].id;
+    }
+
 }

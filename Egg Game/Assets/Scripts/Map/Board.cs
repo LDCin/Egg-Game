@@ -8,8 +8,8 @@ public class Board : Singleton<Board>
     [SerializeField] private GameObject _cellBoardPrefabs;
     [SerializeField] private Cell _cellPrefabs;
     [SerializeField] private float _boardEdge;
-    private int _row = 5;
-    private int _column = 5;
+    [SerializeField] private int _row = 5;
+    [SerializeField] private int _column = 5;
     private SpriteRenderer _boardSpriteRenderer;
     private Cell[,] _cellBoard;
     private List<CellData> _cellDatas;
@@ -23,6 +23,14 @@ public class Board : Singleton<Board>
     private void Start()
     {
         InitBoard();
+    }
+    public int GetBoardSize()
+    {
+        return _row * _column;
+    }
+    public Cell[,] GetCellBoard()
+    {
+        return _cellBoard;
     }
     private void InitBoard()
     {
@@ -41,14 +49,15 @@ public class Board : Singleton<Board>
                 int index = (i + j) % 2;
 
                 Cell newCell = Instantiate(_cellPrefabs, spawnPos, Quaternion.identity, _cellBoardPrefabs.transform);
-                
+
                 newCell.SetSprite(_cellDatas[index].sprite);
                 newCell.SetSortingOrder(i);
 
                 float spriteWidth = newCell.GetSize();
                 float scaleFactor = sizeCell / spriteWidth;
                 newCell.transform.localScale = Vector3.one * scaleFactor;
-                
+
+                newCell.SetPosInBoard(i, j);
                 _cellBoard[i, j] = newCell;
 
                 // spawnPos += new Vector2(sizeCell - 0.02f, 0);
@@ -59,4 +68,5 @@ public class Board : Singleton<Board>
             spawnPos = firstSpawnPos - new Vector2(0, (i + 1) * (sizeCell));
         }
     }
+    
 }
