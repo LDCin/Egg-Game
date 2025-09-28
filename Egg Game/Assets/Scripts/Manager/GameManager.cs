@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -7,60 +8,117 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private EggSpawner _eggSpawner;
     private Board _board;
     private Cell[,] _cellBoard;
-    int[] dx = {-1, 0, 0, 1};
-    int[] dy = {0, -1, 1, 0};
+    private bool _isSelecting = false;
+    int[] dx = { -1, 0, 0, 1 };
+    int[] dy = { 0, -1, 1, 0 };
+    private List<Cell> _selectedCellList;
+
     public override void Awake()
     {
         base.Awake();
         _board = Board.Instance;
         _cellBoard = Board.Instance.GetCellBoard();
+        _selectedCellList = new List<Cell>();
     }
     private void Start()
     {
         EggSpawner eggSpawner = Instantiate(_eggSpawner, transform);
         _eggSpawner = eggSpawner;
     }
-    public bool HasAdjustedCell(Cell cell)
+    public void RemoveEggs()
     {
-        bool checkHasAdjustedCell = false;
-
-        int x = (int)cell.GetPosInBoard().x;
-        int y = (int)cell.GetPosInBoard().y;
-
-        EggController egg = cell.GetEgg();
-        if (egg == null)
+        List<KeyValuePair<int, int>> spawnPosList = new List<KeyValuePair<int, int>>();
+        foreach (var cell in _selectedCellList)
         {
-            Debug.Log("Not Found Egg In Cell!");
-            return false;
+            EggController egg = cell.GetEgg();
+            egg.ReturnToPool();
+            cell.OnUnselected();
+            spawnPosList.Add(new KeyValuePair<int, int>((int)cell.GetPosInBoard().x, (int)cell.GetPosInBoard().y));
         }
-        int eggLevel = egg.GetLevel();
+        _selectedCellList.Clear();
+
+        foreach (var spawnPos in spawnPosList)
+        {
+            _eggSpawner.SpawnEgg(spawnPos.Key, spawnPos.Value);
+        }
+        _isSelecting = false;
+    }
+    public void ClearSelection()
+    {
+        foreach (var cell in _selectedCellList)
+        {
+            cell.OnUnselected();
+        }
+        _selectedCellList.Clear();
+        _isSelecting = false;
+    }
+    private void DFS(int x, int y, int level, bool[,] visited)
+    {
+        if (x < 0 || y < 0 || x >= _cellBoard.GetLength(0) || y >= _cellBoard.GetLength(1))
+        {
+            return;
+        }
+        if (visited[x, y]) return;
+
+        Cell cell = _cellBoard[x, y];
+        EggController egg = cell.GetEgg();
+        if (egg == null || egg.GetLevel() != level) return;
+
+        visited[x, y] = true;
+        cell.OnSelected();
+        _selectedCellList.Add(cell);
 
         for (int i = 0; i < 4; i++)
         {
             int nx = x + dx[i];
             int ny = y + dy[i];
-            if (nx < 0 || ny < 0 || nx >= _cellBoard.GetLength(0) || ny >= _cellBoard.GetLength(1))
-            {
-                continue;
-            }
-            Cell adjustedCell = _cellBoard[x + dx[i], y + dy[i]];
-            int adjustedEggLevel = adjustedCell.GetEgg().GetLevel();
-            if (eggLevel == adjustedEggLevel)
-            {
-                adjustedCell.OnSelected();
-                // PickCell(adjustedCell);
-                checkHasAdjustedCell = true;
-            }
+            DFS(nx, ny, level, visited);
         }
-        if (checkHasAdjustedCell) return true;
-        return false;
     }
     public void PickCell(Cell cell)
     {
-        if (HasAdjustedCell(cell))
+        if (_isSelecting)
         {
-            cell.OnSelected();
+            if (_selectedCellList.Contains(cell))
+            {
+                RemoveEggs();
+            }
+            else
+            {
+                ClearSelection();
+            }
+            return;
         }
-        else Debug.Log("Not Found: Adjusted Cell");
+
+        EggController egg = cell.GetEgg();
+
+        int eggLevel = egg.GetLevel();
+        int x = (int)cell.GetPosInBoard().x;
+        int y = (int)cell.GetPosInBoard().y;
+
+        bool hasSameNeighbor = false;
+        for (int i = 0; i < 4; i++)
+        {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx < 0 || ny < 0 || nx >= _cellBoard.GetLength(0) || ny >= _cellBoard.GetLength(1))
+                continue;
+
+            EggController neighborEgg = _cellBoard[nx, ny].GetEgg();
+            if (neighborEgg != null && neighborEgg.GetLevel() == eggLevel)
+            {
+                hasSameNeighbor = true;
+                break;
+            }
+        }
+
+        if (hasSameNeighbor)
+        {
+            _isSelecting = true;
+            bool[,] visited = new bool[_cellBoard.GetLength(0), _cellBoard.GetLength(1)];
+            DFS(x, y, eggLevel, visited);
+        }
     }
+
 }
+

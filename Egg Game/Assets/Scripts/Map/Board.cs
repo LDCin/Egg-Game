@@ -32,6 +32,10 @@ public class Board : Singleton<Board>
     {
         return _cellBoard;
     }
+    public float GetSpriteSizeY()
+    {
+        return _boardSpriteRenderer.bounds.size.y;
+    }
     private void InitBoard()
     {
         float usableSize = _boardSpriteRenderer.bounds.size.x - 2 * _boardEdge;

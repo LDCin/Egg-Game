@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class EggSpawner : MonoBehaviour
@@ -51,6 +52,30 @@ public class EggSpawner : MonoBehaviour
         {
             egg.transform.SetParent(cell.transform, false);
             egg.transform.localPosition = Vector3.zero;
+            cell.SetEgg(egg);
+        }
+        egg.gameObject.SetActive(true);
+        DOVirtual.DelayedCall(2, () =>
+        {
+            // Debug.Log("Position: " + egg.transform.position);
+
+        });
+    }
+    public void SpawnEgg(int x, int y)
+    {
+        int randomId = _eggPool.GetRandomEggId();
+        EggController egg = _eggPool.GetEgg(randomId);
+        // if (egg == null)
+        // {
+        //     return;
+        // }
+        Cell cell = _cellBoard[x, y];
+        if (cell != null)
+        {
+            egg.transform.SetParent(cell.transform);
+            Vector3 spawnPos = new Vector3(cell.transform.position.x, Board.Instance.GetSpriteSizeY());
+            egg.transform.position = spawnPos;
+            egg.transform.DOMoveY(Vector3.zero.y, 2f).SetEase(Ease.OutQuad);
             cell.SetEgg(egg);
         }
         egg.gameObject.SetActive(true);

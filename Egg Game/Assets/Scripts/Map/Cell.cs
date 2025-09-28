@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Cell : MonoBehaviour
@@ -7,9 +8,12 @@ public class Cell : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Vector2 _posInBoard;
     private EggController _egg;
+    private Color _firstSpriteColor;
+    [SerializeField] float _moveDistance = 0.009f;
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _firstSpriteColor = _spriteRenderer.color;
     }
     public void SetSprite(Sprite sprite)
     {
@@ -45,7 +49,12 @@ public class Cell : MonoBehaviour
     }
     public void OnSelected()
     {
-        _spriteRenderer.color = new Color(1f, 0.05490196f, 1f);
-        transform.Translate(Vector3.up * 0.2f);
+        _spriteRenderer.color = new Color(0.3f, 1f, 0.3f);
+        transform.DOMoveY(transform.position.y + _moveDistance, 0.3f).SetEase(Ease.OutQuad);
+    }
+    public void OnUnselected()
+    {
+        _spriteRenderer.color = _firstSpriteColor;
+        transform.DOMoveY(transform.position.y - _moveDistance, 0.3f).SetEase(Ease.OutQuad);
     }
 }
