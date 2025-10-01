@@ -7,13 +7,14 @@ public class EggSpawner : MonoBehaviour
 {
     //  private EggPool _eggPoolPrefab;
     [SerializeField] private EggPool _eggPool;
+    [SerializeField] private float _fallingTime = 0.5f;
     private int _existEgg = 25;
     private Cell[,] _cellBoard;
+    private int _eggIDLimit = 4;
     private void Awake()
     {
         EggPool eggPool = Instantiate(_eggPool, transform);
         _eggPool = eggPool;
-
     }
     private void Start()
     {
@@ -23,6 +24,14 @@ public class EggSpawner : MonoBehaviour
         {
             SpawnEgg();
         }
+    }
+    public int GetQuantityOfEggType()
+    {
+        return _eggPool.GetEggDataSize();
+    }
+    public EggPool GetEggPool()
+    {
+        return _eggPool;
     }
     private Cell GetEmptySlotInBoard()
     {
@@ -41,8 +50,8 @@ public class EggSpawner : MonoBehaviour
     }
     private void SpawnEgg()
     {
-        int randomId = _eggPool.GetRandomEggId();
-        EggController egg = _eggPool.GetEgg(randomId);
+        int randomId = _eggPool.GetRandomEggId(_eggIDLimit);
+        Egg egg = _eggPool.GetEgg(randomId);
         // if (egg == null)
         // {
         //     return;
@@ -55,29 +64,22 @@ public class EggSpawner : MonoBehaviour
             cell.SetEgg(egg);
         }
         egg.gameObject.SetActive(true);
-        DOVirtual.DelayedCall(2, () =>
-        {
-            // Debug.Log("Position: " + egg.transform.position);
+    }
+    // public void SpawnEgg(int x, int y)
+    // {
+    //     int randomId = _eggPool.GetRandomEggId(_eggIDLimit);
+    //     Egg egg = _eggPool.GetEgg(randomId);
+    //     if (egg == null) return;
 
-        });
-    }
-    public void SpawnEgg(int x, int y)
-    {
-        int randomId = _eggPool.GetRandomEggId();
-        EggController egg = _eggPool.GetEgg(randomId);
-        // if (egg == null)
-        // {
-        //     return;
-        // }
-        Cell cell = _cellBoard[x, y];
-        if (cell != null)
-        {
-            egg.transform.SetParent(cell.transform);
-            Vector3 spawnPos = new Vector3(cell.transform.position.x, Board.Instance.GetSpriteSizeY());
-            egg.transform.position = spawnPos;
-            egg.transform.DOMoveY(Vector3.zero.y, 2f).SetEase(Ease.OutQuad);
-            cell.SetEgg(egg);
-        }
-        egg.gameObject.SetActive(true);
-    }
+    //     Cell cell = _cellBoard[x, y];
+    //     if (cell == null) return;
+
+    //     egg.transform.SetParent(cell.transform);
+    //     Vector3 startLocalPos = new Vector3(0, Board.Instance.GetSpriteSizeY(), 0);
+    //     egg.transform.localPosition = startLocalPos;
+    //     egg.transform.DOLocalMove(Vector3.zero, 0.5f).SetEase(Ease.OutQuad);
+    //     cell.SetEgg(egg);
+
+    //     egg.gameObject.SetActive(true);
+    // }
 }

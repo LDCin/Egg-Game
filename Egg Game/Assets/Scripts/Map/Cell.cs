@@ -7,7 +7,7 @@ public class Cell : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
     private Vector2 _posInBoard;
-    private EggController _egg;
+    [SerializeField] private Egg _egg;
     private Color _firstSpriteColor;
     [SerializeField] float _moveDistance = 0.009f;
     private void Awake()
@@ -35,11 +35,11 @@ public class Cell : MonoBehaviour
     {
         return _posInBoard;
     }
-    public EggController GetEgg()
+    public Egg GetEgg()
     {
         return _egg;
     }
-    public void SetEgg(EggController egg)
+    public void SetEgg(Egg egg)
     {
         _egg = egg;
     }
@@ -57,4 +57,5 @@ public class Cell : MonoBehaviour
         _spriteRenderer.color = _firstSpriteColor;
         transform.DOMoveY(transform.position.y - _moveDistance, 0.3f).SetEase(Ease.OutQuad);
     }
+    
 }

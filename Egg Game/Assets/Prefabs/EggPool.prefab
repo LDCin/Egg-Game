@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d39eed374cd804b9c7f2006f6d22f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _quantityForEachEgg: 10
+  _quantityForEachEgg: 20
   _eggPrefabs: {fileID: 5090514402159911312, guid: 7a572388fc25b8a45b984118ad7b669e, type: 3}
