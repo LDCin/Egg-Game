@@ -43,7 +43,7 @@ public class Board : Singleton<Board>
         Vector2 boardCenter = _boardSpriteRenderer.bounds.center;
         float startX = boardCenter.x - (sizeCell * (_column - 1) / 2f);
         float startY = boardCenter.y + (sizeCell * (_row - 1) / 2f);
-        Vector2 firstSpawnPos = new Vector2(startX, startY);
+        Vector2 firstSpawnPos = new Vector2(startX + 0.0444444f / 2, startY - 0.2444445f / 2);
         Vector2 spawnPos = firstSpawnPos;
 
         for (int i = 0; i < _row; i++)
@@ -65,11 +65,11 @@ public class Board : Singleton<Board>
                 _cellBoard[i, j] = newCell;
 
                 // spawnPos += new Vector2(sizeCell - 0.02f, 0);
-                // spawnPos += new Vector2(sizeCell - 0.01f, 0);
-                spawnPos += new Vector2(sizeCell, 0);
+                spawnPos += new Vector2(sizeCell - 0.01f, 0);
+                // spawnPos += new Vector2(sizeCell, 0);
             }
-            // spawnPos = firstSpawnPos - new Vector2(0, (i + 1) * (sizeCell - 0.055f));
-            spawnPos = firstSpawnPos - new Vector2(0, (i + 1) * (sizeCell));
+            spawnPos = firstSpawnPos - new Vector2(0, (i + 1) * (sizeCell - 0.055f));
+            // spawnPos = firstSpawnPos - new Vector2(0, (i + 1) * (sizeCell));
         }
     }
     

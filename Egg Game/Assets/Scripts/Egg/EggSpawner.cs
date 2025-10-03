@@ -65,21 +65,21 @@ public class EggSpawner : MonoBehaviour
         }
         egg.gameObject.SetActive(true);
     }
-    // public void SpawnEgg(int x, int y)
-    // {
-    //     int randomId = _eggPool.GetRandomEggId(_eggIDLimit);
-    //     Egg egg = _eggPool.GetEgg(randomId);
-    //     if (egg == null) return;
+    public Egg SpawnEgg(int x, int y)
+    {
+        int randomId = _eggPool.GetRandomEggId(_eggIDLimit);
+        Egg egg = _eggPool.GetEgg(randomId);
+        if (egg == null) return null;
 
-    //     Cell cell = _cellBoard[x, y];
-    //     if (cell == null) return;
+        Cell cell = _cellBoard[x, y];
+        if (cell == null) return null;
 
-    //     egg.transform.SetParent(cell.transform);
-    //     Vector3 startLocalPos = new Vector3(0, Board.Instance.GetSpriteSizeY(), 0);
-    //     egg.transform.localPosition = startLocalPos;
-    //     egg.transform.DOLocalMove(Vector3.zero, 0.5f).SetEase(Ease.OutQuad);
-    //     cell.SetEgg(egg);
+        egg.transform.SetParent(cell.transform);
+        Vector3 startLocalPos = new Vector3(0, Board.Instance.GetSpriteSizeY(), 0);
+        egg.transform.localPosition = startLocalPos;
+        cell.SetEgg(egg);
 
-    //     egg.gameObject.SetActive(true);
-    // }
+        egg.gameObject.SetActive(true);
+        return egg;
+    }
 }

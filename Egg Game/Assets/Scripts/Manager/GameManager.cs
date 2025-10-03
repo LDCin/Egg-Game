@@ -14,50 +14,67 @@ public class GameManager : Singleton<GameManager>
     private HashSet<Vector2> _selectedCellList;
     private List<(Egg, List<Vector2>, float, float)> _mergeEggList;
     [SerializeField] private float _mergeSpeed = 4f;
-    private float _fallingTime = 1.0f;
+    [SerializeField] private float _fallingSpeed = 0.2f;
 
     public override void Awake()
     {
         base.Awake();
-        _cellBoard = Board.Instance.GetCellBoard();
         _selectedCellList = new HashSet<Vector2>();
         _mergeEggList = new List<(Egg, List<Vector2>, float, float)>();
     }
     private void Start()
     {
+        _cellBoard = Board.Instance.GetCellBoard();
         EggSpawner eggSpawner = Instantiate(_eggSpawner, transform);
         _eggSpawner = eggSpawner;
     }
-    // public void ReArrangeBoard()
+    // private void SpawnAfterMerging(int )
     // {
-    //     Sequence sq = DOTween.Sequence();
-    //     int rows = _cellBoard.GetLength(0);
-    //     int cols = _cellBoard.GetLength(1);
-    //     for (int col = 0; col < cols; col++)
-    //     {
-    //         Sequence subSq = DOTween.Sequence();
-    //         int emptyRow = rows - 1;
-    //         for (int row = rows - 1; row >= 0; row--)
-    //         {
-    //             Egg egg = _cellBoard[row, col].GetEgg();
-    //             if (egg != null)
-    //             {
-    //                 if (row != emptyRow)
-    //                 {
-    //                     Cell startCell = _cellBoard[row, col];
-    //                     Cell endCell = _cellBoard[emptyRow, col];
-    //                     startCell.SetEgg(null);
-    //                     endCell.SetEgg(egg);
-    //                     egg.transform.SetParent(endCell.transform);
-    //                     sq.Join(egg.transform.DOMove(endCell.transform.position, _fallingTime));
-    //                 }
-    //                 emptyRow--;
-    //             }
-    //         }
-    //     }
-    //     sq.Play();
-    //     Debug.Log("Rearrange Successfully");
+
     // }
+    private void ReArrangeBoard()
+    {
+        Sequence sq = DOTween.Sequence();
+        int rows = _cellBoard.GetLength(0);
+        int cols = _cellBoard.GetLength(1);
+        for (int col = 0; col < cols; col++)
+        {
+            int mergedEgg = 0;
+            int emptyRow = rows - 1;
+            for (int row = rows - 1; row >= 0; row--)
+            {
+                Egg egg = _cellBoard[row, col].GetEgg();
+                if (egg != null)
+                {
+                    if (row != emptyRow)
+                    {
+                        Cell startCell = _cellBoard[row, col];
+                        Cell endCell = _cellBoard[emptyRow, col];
+                        startCell.SetEgg(null);
+                        endCell.SetEgg(egg);
+                        egg.transform.SetParent(endCell.transform);
+                        sq.Join(egg.transform.DOMove(endCell.transform.position, _fallingSpeed));
+                    }
+                    emptyRow--;
+                }
+                else
+                {
+                    mergedEgg++;
+                }
+            }
+            Sequence subSq = DOTween.Sequence();
+            for (int i = 0; i < mergedEgg; i++)
+            {
+                Egg newEgg = _eggSpawner.SpawnEgg(emptyRow, col);
+                Cell endCell = _cellBoard[emptyRow, col];
+                subSq.Append(newEgg.transform.DOMove(endCell.transform.position, _fallingSpeed));
+                emptyRow--;
+            }
+            sq.Join(subSq);
+        }
+        sq.Play();
+        Debug.Log("Rearrange Successfully");
+    }
     public void FindPath(Vector2 startPos, Vector2 endPos, List<Vector2> mergePath)
     {
         HashSet<Vector2> visited = new HashSet<Vector2>();
@@ -153,43 +170,20 @@ public class GameManager : Singleton<GameManager>
 
         sq.OnComplete(() =>
         {
+            int spawnEggQuantity = _selectedCellList.Count;
             var targetCell = _cellBoard[(int)targetPos.x, (int)targetPos.y];
             if (targetCell != null && targetCell.GetEgg() != null)
             {
                 FinishMerge(targetCell.GetEgg());
             }
             ClearSelection();
-            // ReArrangeBoard();
+            ReArrangeBoard();
+
         });
 
         sq.Play();
     }
-
-
-    // public void RemoveEggs()
-    // {
-    //     List<KeyValuePair<int, int>> spawnPosList = new List<KeyValuePair<int, int>>();
-    //     foreach (var pos in _selectedCellList)
-    //     {
-    //         int x = (int)pos.x;
-    //         int y = (int)pos.y;
-    //         Cell cell = _cellBoard[x, y];
-    //         Egg egg = cell.GetEgg();
-    //         egg.ReturnToPool();
-    //         cell.OnUnselected();
-    //         spawnPosList.Add(new KeyValuePair<int, int>(x, y));
-    //     }
-    //     _selectedCellList.Clear();
-    //     MergeEgg(_selectedCellList, );
-
-    //     foreach (var spawnPos in spawnPosList)
-    //     {
-    //         _eggSpawner.SpawnEgg(spawnPos.Key, spawnPos.Value);
-    //     }
-    //     _isSelecting = false;
-    // }
-
-    public void ClearSelection()
+    private void ClearSelection()
     {
         foreach (var pos in _selectedCellList)
         {
@@ -234,7 +228,6 @@ public class GameManager : Singleton<GameManager>
             Vector2 pos = cell.GetPosInBoard();
             if (_selectedCellList.Contains(pos))
             {
-                // RemoveEggs();
                 MergeEgg(_selectedCellList, pos);
             }
             else
