@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -34,7 +35,7 @@ public class GameManager : Singleton<GameManager>
     // }
     private void ReArrangeBoard()
     {
-        Sequence sq = DOTween.Sequence();
+        //Sequence sq = DOTween.Sequence();
         int rows = _cellBoard.GetLength(0);
         int cols = _cellBoard.GetLength(1);
         for (int col = 0; col < cols; col++)
@@ -53,7 +54,8 @@ public class GameManager : Singleton<GameManager>
                         startCell.SetEgg(null);
                         endCell.SetEgg(egg);
                         egg.transform.SetParent(endCell.transform);
-                        sq.Join(egg.transform.DOMove(endCell.transform.position, _fallingSpeed));
+                        egg.transform.DOMove(endCell.transform.position, _fallingSpeed);
+                        //sq.Join(egg.transform.DOMove(endCell.transform.position, _fallingSpeed));
                     }
                     emptyRow--;
                 }
@@ -67,12 +69,14 @@ public class GameManager : Singleton<GameManager>
             {
                 Egg newEgg = _eggSpawner.SpawnEgg(emptyRow, col);
                 Cell endCell = _cellBoard[emptyRow, col];
-                subSq.Append(newEgg.transform.DOMove(endCell.transform.position, _fallingSpeed));
+                //subSq.Append(newEgg.transform.DOMove(endCell.transform.position, _fallingSpeed));
+                newEgg.transform.DOMove(endCell.transform.position, _fallingSpeed);
                 emptyRow--;
             }
-            sq.Join(subSq);
+            //sq.Join(subSq);
         }
-        sq.Play();
+
+        //sq.Play();
         Debug.Log("Rearrange Successfully");
     }
     public void FindPath(Vector2 startPos, Vector2 endPos, List<Vector2> mergePath)
@@ -269,5 +273,11 @@ public class GameManager : Singleton<GameManager>
             bool[,] visited = new bool[_cellBoard.GetLength(0), _cellBoard.GetLength(1)];
             DFS(x, y, eggLevel, visited);
         }
+    }
+
+    [ContextMenu("Retry")]
+    public void ReTry()
+    {
+        SceneManager.LoadScene(0);
     }
 }

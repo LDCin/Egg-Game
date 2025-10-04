@@ -279,6 +279,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   _eggSpawner: {fileID: 4413194865706902187, guid: ed442b89f3b060a4a81919dc32f57742, type: 3}
   _mergeSpeed: 15
+  _fallingSpeed: 0.2
 --- !u!4 &1717820639
 Transform:
   m_ObjectHideFlags: 0

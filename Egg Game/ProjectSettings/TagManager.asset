@@ -50,3 +50,6 @@ TagManager:
   - name: Egg
     uniqueID: 656382467
     locked: 0
+  - name: Particle
+    uniqueID: 4271771623
+    locked: 0
