@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _quantityForEachEgg: 20
-  _eggPrefabs: {fileID: 5090514402159911312, guid: 7a572388fc25b8a45b984118ad7b669e, type: 3}
+  _eggPrefabs: {fileID: 7717509619936857684, guid: 7a572388fc25b8a45b984118ad7b669e, type: 3}

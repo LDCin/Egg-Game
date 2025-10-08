@@ -7,7 +7,6 @@ public class EggSpawner : MonoBehaviour
 {
     //  private EggPool _eggPoolPrefab;
     [SerializeField] private EggPool _eggPool;
-    [SerializeField] private float _fallingTime = 0.5f;
     private int _existEgg = 25;
     private Cell[,] _cellBoard;
     private int _eggIDLimit = 4;
@@ -59,7 +58,7 @@ public class EggSpawner : MonoBehaviour
         Cell cell = GetEmptySlotInBoard();
         if (cell != null)
         {
-            egg.transform.SetParent(cell.transform, false);
+            egg.transform.SetParent(cell.transform);
             egg.transform.localPosition = Vector3.zero;
             cell.SetEgg(egg);
         }

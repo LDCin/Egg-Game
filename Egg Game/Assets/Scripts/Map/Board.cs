@@ -36,6 +36,8 @@ public class Board : Singleton<Board>
     {
         return _boardSpriteRenderer.bounds.size.y;
     }
+    
+    [ContextMenu("Init Board")]
     private void InitBoard()
     {
         float usableSize = _boardSpriteRenderer.bounds.size.x - 2 * _boardEdge;
@@ -46,13 +48,18 @@ public class Board : Singleton<Board>
         Vector2 firstSpawnPos = new Vector2(startX + 0.0444444f / 2, startY - 0.2444445f / 2);
         Vector2 spawnPos = firstSpawnPos;
 
+        transform.localScale = new Vector3(0.439f, 0.422f, 0);
+        transform.position = new Vector3(0, -1.238f, 0);
+
         for (int i = 0; i < _row; i++)
         {
             for (int j = 0; j < _column; j++)
             {
                 int index = (i + j) % 2;
 
-                Cell newCell = Instantiate(_cellPrefabs, spawnPos, Quaternion.identity, _cellBoardPrefabs.transform);
+                // Cell newCell = Instantiate(_cellPrefabs, spawnPos, Quaternion.identity, _cellBoardPrefabs.transform);
+                Cell newCell = Instantiate(_cellPrefabs, spawnPos, Quaternion.identity);
+
 
                 newCell.SetSprite(_cellDatas[index].sprite);
                 newCell.SetSortingOrder(i);
@@ -65,12 +72,19 @@ public class Board : Singleton<Board>
                 _cellBoard[i, j] = newCell;
 
                 // spawnPos += new Vector2(sizeCell - 0.02f, 0);
-                spawnPos += new Vector2(sizeCell - 0.01f, 0);
+                spawnPos += new Vector2(sizeCell - 0.014f, 0);
                 // spawnPos += new Vector2(sizeCell, 0);
             }
             spawnPos = firstSpawnPos - new Vector2(0, (i + 1) * (sizeCell - 0.055f));
             // spawnPos = firstSpawnPos - new Vector2(0, (i + 1) * (sizeCell));
         }
+        for (int i = 0; i < _row; i++)
+        {
+            for (int j = 0; j < _column; j++)
+            {
+                _cellBoard[i, j].transform.SetParent(transform);
+            }
+        }
     }
-    
+
 }

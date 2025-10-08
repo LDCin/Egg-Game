@@ -159,7 +159,8 @@ public class GameManager : Singleton<GameManager>
 
         foreach (var mergeEgg in _mergeEggList)
         {
-            Sequence subSq = DOTween.Sequence(); List<Vector2> path = mergeEgg.Item2;
+            Sequence subSq = DOTween.Sequence();
+            List<Vector2> path = mergeEgg.Item2;
             float delayTime = maxMergeTime - mergeEgg.Item4;
             subSq.AppendInterval(delayTime);
             foreach (var pos in path)
