@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eggPool: {fileID: 7478168043533107823, guid: e4b36c01cbe415a42b24b716dc32f62f, type: 3}
+  _jumpController: {fileID: 7362245418424764675, guid: 331a07025d0695b4f8c2143f366c1039, type: 3}

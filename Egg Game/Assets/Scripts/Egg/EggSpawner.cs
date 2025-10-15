@@ -7,6 +7,7 @@ public class EggSpawner : MonoBehaviour
 {
     //  private EggPool _eggPoolPrefab;
     [SerializeField] private EggPool _eggPool;
+
     private int _existEgg = 25;
     private Cell[,] _cellBoard;
     private int _eggIDLimit = 4;

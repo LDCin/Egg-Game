@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private EggSpawner _eggSpawner;
+
     private Cell[,] _cellBoard;
     private bool _isSelecting = false;
     int[] dx = { -1, 0, 0, 1 };
@@ -28,11 +29,8 @@ public class GameManager : Singleton<GameManager>
         _cellBoard = Board.Instance.GetCellBoard();
         EggSpawner eggSpawner = Instantiate(_eggSpawner, transform);
         _eggSpawner = eggSpawner;
+        
     }
-    // private void SpawnAfterMerging(int )
-    // {
-
-    // }
     private void ReArrangeBoard()
     {
         //Sequence sq = DOTween.Sequence();
