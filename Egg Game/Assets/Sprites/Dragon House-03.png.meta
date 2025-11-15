@@ -134,7 +134,7 @@ TextureImporter:
         width: 867
         height: 478
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -150,12 +150,12 @@ TextureImporter:
       name: Dragon House-03_1
       rect:
         serializedVersion: 2
-        x: 346
-        y: 936
-        width: 73
-        height: 65
+        x: 294
+        y: 913
+        width: 844
+        height: 104
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,258 +163,6 @@ TextureImporter:
       bones: []
       spriteID: f1d15a46eabf4f94087a9c9e4c479e81
       internalID: -2005515903
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_2
-      rect:
-        serializedVersion: 2
-        x: 425
-        y: 935
-        width: 56
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a8cd15499dc7ec46a1bb3cd66929324
-      internalID: 574962890
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_3
-      rect:
-        serializedVersion: 2
-        x: 483
-        y: 937
-        width: 49
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5946e0351a9e2c341af4299016dcfbaa
-      internalID: -359013380
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_4
-      rect:
-        serializedVersion: 2
-        x: 538
-        y: 937
-        width: 22
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 86a88cbb79e879648b6ad20f1f222f71
-      internalID: -650609890
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_5
-      rect:
-        serializedVersion: 2
-        x: 560
-        y: 937
-        width: 50
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ee60ed2c6219fa48a342e451f54f562
-      internalID: 1525474794
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_6
-      rect:
-        serializedVersion: 2
-        x: 652
-        y: 936
-        width: 58
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c94099342f407f0478647377520f014a
-      internalID: -2130900312
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_7
-      rect:
-        serializedVersion: 2
-        x: 697
-        y: 937
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d4f98795479efa14caca5c700530df3d
-      internalID: 721753473
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_8
-      rect:
-        serializedVersion: 2
-        x: 756
-        y: 937
-        width: 53
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1be32f52acc78a44ae2ad721a7b7311
-      internalID: 937052453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_9
-      rect:
-        serializedVersion: 2
-        x: 810
-        y: 934
-        width: 45
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 60f917ca0e2f1c24dbcb3e15850a5b4c
-      internalID: -889513801
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_10
-      rect:
-        serializedVersion: 2
-        x: 856
-        y: 937
-        width: 51
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2b341f62484f98439707c77a2d5fab1
-      internalID: 703582790
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_11
-      rect:
-        serializedVersion: 2
-        x: 914
-        y: 936
-        width: 43
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d41f625817dfb804cb56d2a1fdaf9285
-      internalID: -971373205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_12
-      rect:
-        serializedVersion: 2
-        x: 963
-        y: 937
-        width: 22
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd3750aff7a3cf946a4fc7e9e6eecaaa
-      internalID: 516376806
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dragon House-03_13
-      rect:
-        serializedVersion: 2
-        x: 985
-        y: 923
-        width: 108
-        height: 77
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3290230c57044b7419371cb306a8b706
-      internalID: -1346754881
       vertices: []
       indices: 
       edges: []
@@ -428,7 +176,7 @@ TextureImporter:
         width: 1236
         height: 579
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -449,7 +197,7 @@ TextureImporter:
         width: 1352
         height: 167
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -480,6 +228,7 @@ TextureImporter:
       Dragon House-03_13: -1346754881
       Dragon House-03_14: 603150877
       Dragon House-03_15: -117714028
+      Dragon House-03_16: -1873127739
       Dragon House-03_2: 574962890
       Dragon House-03_3: -359013380
       Dragon House-03_4: -650609890

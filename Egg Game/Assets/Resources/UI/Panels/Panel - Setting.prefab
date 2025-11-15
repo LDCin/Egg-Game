@@ -888,7 +888,7 @@ GameObject:
   - component: {fileID: 4780931679327042858}
   - component: {fileID: 2582581723995997977}
   m_Layer: 5
-  m_Name: Panel - PauseGame
+  m_Name: Panel - Setting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

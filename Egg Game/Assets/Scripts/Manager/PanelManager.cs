@@ -37,6 +37,8 @@ public class PanelManager : Singleton<PanelManager>
     {
         Panel panel = GetPanel(panelName);
         panel.Open();
+        Debug.Log("Open Panel");
+
     }
     public void ClosePanel(string panelName)
     {

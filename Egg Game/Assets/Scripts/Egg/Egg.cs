@@ -8,12 +8,18 @@ public class Egg : MonoBehaviour
     [SerializeField] private bool _destroyOnReturn = false;
     [SerializeField] private int _id;
     [SerializeField] private int _level;
-    private SpriteRenderer _spriteRender;
-    private Animator _animator;
+    private SpriteRenderer _spriteRender = null;
+    private Animator _animator = null;
     private void Awake()
     {
-        _spriteRender = GetComponent<SpriteRenderer>();
-        _animator = GetComponent<Animator>();
+        if (GetComponent<SpriteRenderer>() != null)
+        {
+            _spriteRender = GetComponent<SpriteRenderer>();
+        }
+        if (GetComponent<Animator>() != null)
+        {
+            _animator = GetComponent<Animator>();
+        }
     }
 
     // private void OnEnable()
@@ -24,9 +30,16 @@ public class Egg : MonoBehaviour
     public void SetUp(int id, Sprite sprite, RuntimeAnimatorController eggAnimation)
     {
         _id = id;
-        _level = id;
-        _spriteRender.sprite = sprite;
-        _animator.runtimeAnimatorController = eggAnimation;
+        _level = id + 1;
+        if (_spriteRender != null)
+        {
+            _spriteRender.sprite = sprite;
+        }
+        if (_animator != null)
+        {
+            _animator.runtimeAnimatorController = eggAnimation;
+
+        }
     }
     public int GetID()
     {

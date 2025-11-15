@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public static class GameConfig
 {
     // SCENE
@@ -20,5 +22,16 @@ public static class GameConfig
     // UI
     // - PANEL
     public static string PAUSE_PANEL = "Panel - PauseGame";
+    public static string GAME_OVER_PANEL = "Panel - GameOver";
+    public static string ACHIEVEMENTS_PANEL = "Panel - Achievements";
+    public static string SETTING_PANEL = "Panel - Setting";
+    public static string BONUS_PANEL = "Panel - Bonus";
+
+    // SCORE
+    public static int SCORE = 0;
+    public static int MAX_EGG_LEVEL_IN_GAME = 1;
+    public static int MAX_LEVEL_ON_START = 1;
+    public static int MAX_EGG_LEVEL_HIGH_SCORE => PlayerPrefs.GetInt("MaxLevelHighScore", 1);
+
 
 }

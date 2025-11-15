@@ -10,7 +10,7 @@ public class EggSpawner : MonoBehaviour
 
     private int _existEgg = 25;
     private Cell[,] _cellBoard;
-    private int _eggIDLimit = 4;
+    private int _maxEggLevelSpawnLimit = 3;
     private void Awake()
     {
         EggPool eggPool = Instantiate(_eggPool, transform);
@@ -18,6 +18,7 @@ public class EggSpawner : MonoBehaviour
     }
     private void Start()
     {
+        GameConfig.MAX_LEVEL_ON_START = _maxEggLevelSpawnLimit;
         _cellBoard = Board.Instance.GetCellBoard();
         _existEgg = Board.Instance.GetBoardSize();
         for (int i = 0; i < _existEgg; i++)
@@ -50,7 +51,7 @@ public class EggSpawner : MonoBehaviour
     }
     private void SpawnEgg()
     {
-        int randomId = _eggPool.GetRandomEggId(_eggIDLimit);
+        int randomId = _eggPool.GetRandomEggId(_maxEggLevelSpawnLimit);
         Egg egg = _eggPool.GetEgg(randomId);
         // if (egg == null)
         // {
@@ -67,7 +68,7 @@ public class EggSpawner : MonoBehaviour
     }
     public Egg SpawnEgg(int x, int y)
     {
-        int randomId = _eggPool.GetRandomEggId(_eggIDLimit);
+        int randomId = _eggPool.GetRandomEggId(_maxEggLevelSpawnLimit);
         Egg egg = _eggPool.GetEgg(randomId);
         if (egg == null) return null;
 

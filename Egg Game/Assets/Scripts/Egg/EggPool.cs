@@ -33,6 +33,10 @@ public class EggPool : MonoBehaviour
     {
         return _poolSize;
     }
+    public List<EggData> GetEggDatas()
+    {
+        return _eggDatas;
+    }
     private void InitEggList()
     {
         _eggs = new List<Egg>();

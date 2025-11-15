@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private EggSpawner _eggSpawner;
+    [SerializeField] private GameplayPanel _gameplayPanel;
 
     private Cell[,] _cellBoard;
     private bool _isSelecting = false;
@@ -17,7 +18,6 @@ public class GameManager : Singleton<GameManager>
     private List<(Egg, List<Vector2>, float, float)> _mergeEggList;
     [SerializeField] private float _mergeSpeed = 4f;
     [SerializeField] private float _fallingSpeed = 0.2f;
-
     public override void Awake()
     {
         base.Awake();
@@ -26,10 +26,17 @@ public class GameManager : Singleton<GameManager>
     }
     private void Start()
     {
+        // GameConfig.MAX_EGG_LEVEL_IN_GAME = 3;
+        UpdateMaxEggLevel(GameConfig.MAX_LEVEL_ON_START);
+        // GameConfig.SCORE = 0;
+        UpdateScore(0);
         _cellBoard = Board.Instance.GetCellBoard();
         EggSpawner eggSpawner = Instantiate(_eggSpawner, transform);
         _eggSpawner = eggSpawner;
-        
+    }
+    public List<EggData> GetEggDatas()
+    {
+        return _eggSpawner.GetEggPool().GetEggDatas();
     }
     private void ReArrangeBoard()
     {
@@ -139,6 +146,9 @@ public class GameManager : Singleton<GameManager>
         float maxMergeTime = 0;
         Sequence sq = DOTween.Sequence();
 
+        int scoredEggLevel = -1;
+        int scoredEggQuantity = -1;
+
         foreach (var pos in selectedCellList)
         {
             List<Vector2> mergePath = new List<Vector2>();
@@ -153,6 +163,25 @@ public class GameManager : Singleton<GameManager>
             float mergeTime = dis / _mergeSpeed;
             maxMergeTime = Mathf.Max(maxMergeTime, mergeTime);
             _mergeEggList.Add((egg, mergePath, dis, mergeTime));
+
+            if (scoredEggLevel == -1)
+            {
+                scoredEggLevel = egg.GetLevel();
+                if (scoredEggLevel + 1 > GameConfig.MAX_EGG_LEVEL_IN_GAME)
+                {
+                    int newMaxEggLevel = scoredEggLevel + 1;
+                    UpdateMaxEggLevel(newMaxEggLevel);
+                    if (newMaxEggLevel > GameConfig.MAX_EGG_LEVEL_HIGH_SCORE)
+                    {
+                        PlayerPrefs.SetInt("MaxLevelHighScore", newMaxEggLevel);
+                        PlayerPrefs.Save();
+                    }
+                }
+            }
+            if (scoredEggQuantity == -1)
+            {
+                scoredEggQuantity = selectedCellList.Count;
+            }
         }
 
         foreach (var mergeEgg in _mergeEggList)
@@ -185,6 +214,8 @@ public class GameManager : Singleton<GameManager>
         });
 
         sq.Play();
+
+        UpdateScore(GameConfig.SCORE + scoredEggQuantity * scoredEggLevel);     
     }
     private void ClearSelection()
     {
@@ -274,9 +305,28 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void GameOver()
+    {
+        PanelManager.Instance.OpenPanel(GameConfig.GAME_OVER_PANEL);
+    }
+
+    public void UpdateScore(int newScore)
+    {
+        GameConfig.SCORE = newScore;
+        _gameplayPanel.UpdateScoreText();
+    }
+
+    public void UpdateMaxEggLevel(int newMaxEggLevel)
+    {
+        GameConfig.MAX_EGG_LEVEL_IN_GAME = newMaxEggLevel;
+        _gameplayPanel.UpdateMaxEggLevelText();
+    }
+
     [ContextMenu("Retry")]
     public void ReTry()
     {
         SceneManager.LoadScene(0);
     }
+
+    
 }

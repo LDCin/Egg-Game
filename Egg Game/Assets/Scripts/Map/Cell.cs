@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cell : MonoBehaviour
 {
@@ -10,10 +11,14 @@ public class Cell : MonoBehaviour
     [SerializeField] private Egg _egg;
     private Color _firstSpriteColor;
     [SerializeField] float _moveDistance = 0.009f;
+    [SerializeField] private Image _image;
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _firstSpriteColor = _spriteRenderer.color;
+        if (GetComponent<SpriteRenderer>() != null)
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _firstSpriteColor = _spriteRenderer.color;
+        }
     }
     public void SetSprite(Sprite sprite)
     {
@@ -45,7 +50,7 @@ public class Cell : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        GameManager.Instance.PickCell(this);
+        if (!UIHelper.Instance.IsPointerOverUI()) GameManager.Instance.PickCell(this);
     }
     public void OnSelected()
     {
