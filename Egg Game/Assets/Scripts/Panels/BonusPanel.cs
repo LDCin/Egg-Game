@@ -6,5 +6,20 @@ using UnityEngine.UIElements;
 
 public class BonusPanel : Panel
 {
-    
+    public void Gift()
+    {
+        
+    }
+    public void Arcade()
+    {
+        
+    }
+    public void Flash()
+    {
+        
+    }
+    public void Back()
+    {
+        Close();
+    }
 }

@@ -18,7 +18,7 @@ public class MainMenuPanel : Panel
     }
     public void Share()
     {
-
+        Application.OpenURL(GameConfig.GITHUB_LINK);
     }
     public void Help()
     {

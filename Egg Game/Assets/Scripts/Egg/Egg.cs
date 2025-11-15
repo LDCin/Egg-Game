@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Egg : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Egg : MonoBehaviour
     [SerializeField] private int _level;
     private SpriteRenderer _spriteRender = null;
     private Animator _animator = null;
+    private Image _image;
     private void Awake()
     {
         if (GetComponent<SpriteRenderer>() != null)
@@ -19,6 +21,10 @@ public class Egg : MonoBehaviour
         if (GetComponent<Animator>() != null)
         {
             _animator = GetComponent<Animator>();
+        }
+        if (GetComponent<Image>() != null)
+        {
+            _image = GetComponent<Image>();
         }
     }
 
@@ -52,6 +58,10 @@ public class Egg : MonoBehaviour
     public int GetLevel()
     {
         return _level;
+    }
+    public void SetImage(Sprite sprite)
+    {
+        _image.sprite = sprite;
     }
 
     public void LevelUp(EggPool eggPool)

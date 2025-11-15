@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3776472044409992385}
   - component: {fileID: 6594470418484473856}
   m_Layer: 5
-  m_Name: Panel - PausePanelZone
+  m_Name: Panel - SettingPanelZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7012261855320379944, guid: fd7f427abb4ece2448755652792629b0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -809,7 +809,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5488440318447421684, guid: fd7f427abb4ece2448755652792629b0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -935,6 +935,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destroyOnClose: 0
+  _onSFXSprite: {fileID: -7012261855320379944, guid: fd7f427abb4ece2448755652792629b0, type: 3}
+  _offSFXSprite: {fileID: -6530121748577348487, guid: fd7f427abb4ece2448755652792629b0, type: 3}
+  _onBGMSprite: {fileID: -5488440318447421684, guid: fd7f427abb4ece2448755652792629b0, type: 3}
+  _offBGMSprite: {fileID: 1800584767278167601, guid: fd7f427abb4ece2448755652792629b0, type: 3}
+  _SFXButton: {fileID: 4157749798530545584}
+  _BGMButton: {fileID: 3147898491921242107}
 --- !u!114 &2582581723995997977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1162,7 +1168,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PAUSE
+  m_text: SETTING
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 69d9c8e46aa33dc439f3e2217c5ef71c, type: 2}
   m_sharedMaterial: {fileID: 3143356343483164652, guid: 69d9c8e46aa33dc439f3e2217c5ef71c, type: 2}
