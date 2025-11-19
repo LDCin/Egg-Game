@@ -32,6 +32,8 @@ public static class GameConfig
     public static int MAX_EGG_LEVEL_IN_GAME = 1;
     public static int MAX_LEVEL_ON_START = 1;
     public static int MAX_EGG_LEVEL_HIGH_SCORE => PlayerPrefs.GetInt("MaxLevelHighScore", 1);
+    public static int HIGH_SCORE => PlayerPrefs.GetInt("HighScore", 0);
+    public static int STAR_SCORE = 0;
 
     // SOUND
     public static int BGM_STATE => PlayerPrefs.GetInt("BGMState", 1);

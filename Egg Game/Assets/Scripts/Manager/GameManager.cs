@@ -26,10 +26,7 @@ public class GameManager : Singleton<GameManager>
     }
     private void Start()
     {
-        // GameConfig.MAX_EGG_LEVEL_IN_GAME = 3;
-        UpdateMaxEggLevel(GameConfig.MAX_LEVEL_ON_START);
-        // GameConfig.SCORE = 0;
-        UpdateScore(0);
+        ResetScore();
         _cellBoard = Board.Instance.GetCellBoard();
         EggSpawner eggSpawner = Instantiate(_eggSpawner, transform);
         _eggSpawner = eggSpawner;
@@ -37,6 +34,12 @@ public class GameManager : Singleton<GameManager>
     public List<EggData> GetEggDatas()
     {
         return _eggSpawner.GetEggPool().GetEggDatas();
+    }
+    public void ResetScore()
+    {
+        UpdateMaxEggLevel(GameConfig.MAX_LEVEL_ON_START);
+        UpdateScoreAndHighScore(0);
+        GameConfig.STAR_SCORE = 0;
     }
     private void ReArrangeBoard()
     {
@@ -215,7 +218,7 @@ public class GameManager : Singleton<GameManager>
 
         sq.Play();
 
-        UpdateScore(GameConfig.SCORE + scoredEggQuantity * scoredEggLevel);     
+        UpdateScoreAndHighScore(GameConfig.SCORE + scoredEggQuantity * scoredEggLevel);
     }
     private void ClearSelection()
     {
@@ -310,10 +313,15 @@ public class GameManager : Singleton<GameManager>
         PanelManager.Instance.OpenPanel(GameConfig.GAME_OVER_PANEL);
     }
 
-    public void UpdateScore(int newScore)
+    public void UpdateScoreAndHighScore(int newScore)
     {
         GameConfig.SCORE = newScore;
+        if (newScore > GameConfig.HIGH_SCORE)
+        {
+            PlayerPrefs.SetInt("HighScore", newScore);
+        }
         _gameplayPanel.UpdateScoreText();
+        UpdateStarScore();
     }
 
     public void UpdateMaxEggLevel(int newMaxEggLevel)
@@ -321,12 +329,23 @@ public class GameManager : Singleton<GameManager>
         GameConfig.MAX_EGG_LEVEL_IN_GAME = newMaxEggLevel;
         _gameplayPanel.UpdateMaxEggLevelText();
     }
-
-    [ContextMenu("Retry")]
-    public void ReTry()
+    public void UpdateStarScore()
     {
-        SceneManager.LoadScene(0);
+        if (GameConfig.SCORE < 1000)
+        {
+            GameConfig.STAR_SCORE = 0;
+        }
+        else if (GameConfig.SCORE < 5000)
+        {
+            GameConfig.STAR_SCORE = 1;
+        }
+        else if (GameConfig.SCORE < 10000)
+        {
+            GameConfig.STAR_SCORE = 2;
+        }
+        else if (GameConfig.SCORE < 15000)
+        {
+            GameConfig.STAR_SCORE = 3;
+        }
     }
-
-    
 }

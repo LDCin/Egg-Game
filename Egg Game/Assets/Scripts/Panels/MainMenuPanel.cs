@@ -14,6 +14,8 @@ public class MainMenuPanel : Panel
     }
     public void StartGame()
     {
+        ParticleManager.Instance.PlayBubbleParticle();
+        ParticleManager.Instance.StopCloudParticle();
         SceneManager.LoadScene(GameConfig.GAME_SCENE);
     }
     public void Share()

@@ -34,6 +34,9 @@ public class GameplayPanel : Panel
     }
     public void ConfirmYes()
     {
+        ParticleManager.Instance.PlayBubbleParticle();
+        ParticleManager.Instance.StopCloudParticle();
+        Time.timeScale = 1;
         SceneManager.LoadScene(GameConfig.MENU_SCENE);
         PanelManager.Instance.CloseAllPanel();
     }
