@@ -331,19 +331,19 @@ public class GameManager : Singleton<GameManager>
     }
     public void UpdateStarScore()
     {
-        if (GameConfig.SCORE < 1000)
+        if (GameConfig.SCORE < GameConfig.STAR_LEVEL_0_SCORE)
         {
             GameConfig.STAR_SCORE = 0;
         }
-        else if (GameConfig.SCORE < 5000)
+        else if (GameConfig.SCORE < GameConfig.STAR_LEVEL_1_SCORE)
         {
             GameConfig.STAR_SCORE = 1;
         }
-        else if (GameConfig.SCORE < 10000)
+        else if (GameConfig.SCORE < GameConfig.STAR_LEVEL_2_SCORE)
         {
             GameConfig.STAR_SCORE = 2;
         }
-        else if (GameConfig.SCORE < 15000)
+        else if (GameConfig.SCORE < GameConfig.STAR_LEVEL_3_SCORE)
         {
             GameConfig.STAR_SCORE = 3;
         }
