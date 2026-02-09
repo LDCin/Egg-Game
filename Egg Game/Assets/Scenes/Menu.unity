@@ -11350,7 +11350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a88dff81532d0448aaaa684964099cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
+  dontDestroyOnLoad: 1
   _BGM: {fileID: 1612352978}
   _SFX: {fileID: 1612352977}
   _defaultSFX: {fileID: 8300000, guid: d970b0fe846c2a34eae2f361d3e9e612, type: 3}
