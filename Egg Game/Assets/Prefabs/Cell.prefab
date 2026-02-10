@@ -46,7 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab326ebe38004140a95f6eb3e7e01fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _egg: {fileID: 0}
+  _shadow: {fileID: 6753699257230532422, guid: e0350739b2d27a14f953cc15439e77db, type: 3}
   _moveDistance: 0.05
+  _image: {fileID: 0}
 --- !u!212 &6048152593425818898
 SpriteRenderer:
   m_ObjectHideFlags: 0

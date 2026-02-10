@@ -9,6 +9,11 @@ public class Egg : MonoBehaviour
     [SerializeField] private bool _destroyOnReturn = false;
     [SerializeField] private int _id;
     [SerializeField] private int _level;
+    [SerializeField] private GameObject _shadow;
+
+    // [SerializeField] private int _minTimeToJump = 2;
+    // [SerializeField] private int _maxTimeToJump = 6;
+    // [SerializeField] private float _timeToJump;
     private SpriteRenderer _spriteRender = null;
     private Animator _animator = null;
     private Image _image;
@@ -27,10 +32,18 @@ public class Egg : MonoBehaviour
             _image = GetComponent<Image>();
         }
     }
-
-    // private void OnEnable()
+    // private void Start()
     // {
-    //     Jump();
+    //     _timeToJump = Random.Range(_minTimeToJump, _maxTimeToJump);
+    // }
+    // private void Update()
+    // {
+    //     _timeToJump -= Time.deltaTime;
+    //     if (_timeToJump <= 0)
+    //     {
+    //         _animator.SetTrigger(GameConfig.JUMP_TRIGGER);
+    //         _timeToJump = Random.Range(_minTimeToJump, _maxTimeToJump);
+    //     }
     // }
 
     public void SetUp(int id, Sprite sprite, RuntimeAnimatorController eggAnimation)
@@ -44,7 +57,9 @@ public class Egg : MonoBehaviour
         if (_animator != null)
         {
             _animator.runtimeAnimatorController = eggAnimation;
-
+        }
+        if (_level > 1 && !(_shadow.CompareTag(GameConfig.SHADOW_TAG))) {
+            _shadow.gameObject.SetActive(true);
         }
     }
     public int GetID()
@@ -92,5 +107,4 @@ public class Egg : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
 }

@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 1953137264283629917}
   - component: {fileID: 1806485578123207866}
   - component: {fileID: 8831871690308265678}
+  - component: {fileID: 1926445917132364831}
   m_Layer: 5
   m_Name: Panel - Bonus
   m_TagString: Untagged
@@ -303,6 +304,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &1926445917132364831
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870637960680999891}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4224fced2aed6914b8a75927435f92ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3951429530034722518
 GameObject:
   m_ObjectHideFlags: 0

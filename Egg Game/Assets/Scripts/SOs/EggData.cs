@@ -8,4 +8,5 @@ public class EggData : ScriptableObject
     public int id;
     public Sprite sprite;
     public RuntimeAnimatorController eggAnimation;
+    public Vector2 uiSize = new Vector2(120f, 140f);
 }

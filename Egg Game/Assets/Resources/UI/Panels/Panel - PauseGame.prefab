@@ -887,6 +887,7 @@ GameObject:
   - component: {fileID: 6771974045336315881}
   - component: {fileID: 4780931679327042858}
   - component: {fileID: 2582581723995997977}
+  - component: {fileID: 634875023315423156}
   m_Layer: 5
   m_Name: Panel - PauseGame
   m_TagString: Untagged
@@ -935,6 +936,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destroyOnClose: 0
+  _onSFXSprite: {fileID: -7012261855320379944, guid: fd7f427abb4ece2448755652792629b0, type: 3}
+  _offSFXSprite: {fileID: -6530121748577348487, guid: fd7f427abb4ece2448755652792629b0, type: 3}
+  _onBGMSprite: {fileID: -5488440318447421684, guid: fd7f427abb4ece2448755652792629b0, type: 3}
+  _offBGMSprite: {fileID: 1800584767278167601, guid: fd7f427abb4ece2448755652792629b0, type: 3}
+  _SFXButton: {fileID: 4157749798530545584}
+  _BGMButton: {fileID: 3147898491921242107}
 --- !u!114 &2582581723995997977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,6 +972,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &634875023315423156
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6722789571982300827}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff5e8ff85e3f19e48b12f13f64927488, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7264376504501215608
 GameObject:
   m_ObjectHideFlags: 0

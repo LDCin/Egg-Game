@@ -20,6 +20,10 @@ public class Panel : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-        }
+       }
+    }
+    private void OnDestroy()
+    {
+        PanelManager.Instance?.OnPanelDestroyed(this);
     }
 }

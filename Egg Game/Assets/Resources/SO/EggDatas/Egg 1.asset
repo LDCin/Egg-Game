@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   sprite: {fileID: -6759211620547103880, guid: 52df0e53a0d8a334bb772c3f7736711f, type: 3}
-  eggAnimation: {fileID: 9100000, guid: a1705713e23939b4fa9496adf165ed98, type: 2}
+  eggAnimation: {fileID: 0}
+  uiSize: {x: 120, y: 140}

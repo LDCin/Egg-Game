@@ -219,6 +219,7 @@ public class GameManager : Singleton<GameManager>
         sq.Play();
 
         UpdateScoreAndHighScore(GameConfig.SCORE + scoredEggQuantity * scoredEggLevel);
+        SoundManager.Instance.PlayMergeSound();
     }
     private void ClearSelection()
     {

@@ -29,8 +29,8 @@ public static class GameConfig
 
     // SCORE
     public static int SCORE = 0;
-    public static int MAX_EGG_LEVEL_IN_GAME = 1;
-    public static int MAX_LEVEL_ON_START = 1;
+    public static int MAX_EGG_LEVEL_IN_GAME = 3;
+    public static int MAX_LEVEL_ON_START = 3;
     public static int MAX_EGG_LEVEL_HIGH_SCORE => PlayerPrefs.GetInt("MaxLevelHighScore", 1);
     public static int HIGH_SCORE => PlayerPrefs.GetInt("HighScore", 0);
     public static int STAR_SCORE = 0;
@@ -42,4 +42,10 @@ public static class GameConfig
     // SOUND
     public static int BGM_STATE => PlayerPrefs.GetInt("BGMState", 1);
     public static int SFX_STATE => PlayerPrefs.GetInt("SFXState", 1);
+
+    // ANIMATION
+    public static string JUMP_TRIGGER = "Jump";
+
+    // TAG
+    public static string SHADOW_TAG = "Hidden Shadow";
 }

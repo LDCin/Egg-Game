@@ -6,6 +6,7 @@ public class HelpPanel : Panel
 {
     public void ReturnToGame()
     {
+        SoundManager.Instance.PlayClickSound();
         Time.timeScale = 1;
         Close();
     }

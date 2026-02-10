@@ -15,3 +15,4 @@ MonoBehaviour:
   id: 5
   sprite: {fileID: -1634599686845655008, guid: 52df0e53a0d8a334bb772c3f7736711f, type: 3}
   eggAnimation: {fileID: 9100000, guid: a1705713e23939b4fa9496adf165ed98, type: 2}
+  uiSize: {x: 140, y: 170}

@@ -1,89 +1,84 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class AchievementsPanel : Panel
 {
-    [SerializeField] Egg _eggAchievementPrefabs;
-    [SerializeField] Cell _unlockedCellPrefabs;
-    [SerializeField] Cell _notUnlockedCellPrefabs;
-    [SerializeField] GameObject _achievementsScrollViewContent;
+    [Header("Prefabs")]
+    [SerializeField] private Egg _eggAchievementPrefab;
+    [SerializeField] private Cell _unlockedCellPrefab;
+    [SerializeField] private Cell _notUnlockedCellPrefab;
+
+    [Header("UI")]
+    [SerializeField] private Transform _achievementsScrollViewContent;
+
     private List<EggData> _eggDatas;
-    private List<Cell> _eggAchievements;
-    private bool _isFirst = true;
-    private void OnEnable()
-    {
-        if (!_isFirst)
-        {
-            LoadAchievement();
-        }
-    }
+    private readonly List<Cell> _cells = new();
+
     private void Start()
     {
-        _eggDatas = new List<EggData>(Resources.LoadAll<EggData>(GameConfig.EGG_PATH));
-        // foreach (var eggData in _eggDatas)
-        // {
-        //     Debug.Log(eggData.id);
-        // }
-        _eggDatas.Sort((a, b) => a.id.CompareTo(b.id));
-        _eggAchievements = new List<Cell>();
-        SpawnAchievement();
-        LoadAchievement();
-        _isFirst = false;
+        LoadData();
+        SpawnAchievements();
     }
-    private void LoadAchievement()
+    private void LoadData()
     {
-        List<Cell> notUnlockedCells = new List<Cell>();
-        foreach (var eggAchievement in _eggAchievements)
-        {
-            if (eggAchievement.GetEgg().GetLevel() <= GameConfig.MAX_EGG_LEVEL_HIGH_SCORE)
-            {
-                eggAchievement.transform.SetParent(_achievementsScrollViewContent.transform);
-                eggAchievement.transform.localScale = new Vector3(1, 1, 1);
-            }
-            else
-            {
-                Cell notUnlockedCell = Instantiate(_notUnlockedCellPrefabs, _achievementsScrollViewContent.transform);
-                notUnlockedCells.Add(notUnlockedCell);
-            }
-        }
+        _eggDatas = new List<EggData>(
+            Resources.LoadAll<EggData>(GameConfig.EGG_PATH)
+        );
 
-        foreach (var notUnlockedCell in notUnlockedCells)
-        {
-            _eggAchievements.Add(notUnlockedCell);
-        }
+        _eggDatas.Sort((a, b) => a.id.CompareTo(b.id));
     }
-    private void SpawnAchievement()
+    private void SpawnAchievements()
     {
-        foreach (Cell eggAchievement in _eggAchievements)
-        {
-            Destroy(eggAchievement.gameObject);
-        }
+        ClearOldCells();
+
         foreach (var eggData in _eggDatas)
         {
-            Cell slot = Instantiate(_unlockedCellPrefabs);
-            Egg egg = Instantiate(_eggAchievementPrefabs);
-            egg.SetUp(eggData.id, eggData.sprite, null);
-            egg.SetImage(eggData.sprite);
-            slot.SetEgg(egg);
-            if (eggData.id == 0)
-            {
-                egg.transform.localScale = new Vector3(0.6f, 0.55f, 0);
-            }
-            else
-            {
-                egg.transform.localScale = new Vector3(0.6f, 0.7f, 0);
-            }
-            egg.transform.SetParent(slot.transform);
-            egg.transform.localPosition = Vector3.zero;
-            // egg.gameObject.SetActive(false);
-            _eggAchievements.Add(slot);
+            bool isUnlocked = eggData.id <= GameConfig.MAX_EGG_LEVEL_HIGH_SCORE;
+
+            Cell cell = Instantiate(isUnlocked ? _unlockedCellPrefab : _notUnlockedCellPrefab, _achievementsScrollViewContent
+            );
+
+            _cells.Add(cell);
+
+            if (!isUnlocked)
+                continue;
+
+            SpawnEgg(cell, eggData);
         }
     }
+    private void SpawnEgg(Cell cell, EggData eggData)
+    {
+        Egg egg = Instantiate(_eggAchievementPrefab);
+        egg.SetUp(eggData.id, eggData.sprite, null);
+        egg.SetImage(eggData.sprite);
+
+        cell.SetEgg(egg);
+
+        RectTransform eggRect = egg.GetComponent<RectTransform>();
+        eggRect.SetParent(cell.transform, false);
+        eggRect.anchoredPosition = Vector2.zero;
+        eggRect.localScale = Vector3.one;
+
+        eggRect.sizeDelta = eggData.uiSize;
+
+        Image img = egg.GetComponent<Image>();
+        if (img != null)
+            img.preserveAspect = true;
+    }
+    private void ClearOldCells()
+    {
+        foreach (var cell in _cells)
+        {
+            if (cell != null)
+                Destroy(cell.gameObject);
+        }
+        _cells.Clear();
+    }
+
     public void Back()
     {
+        SoundManager.Instance.PlayClickSound();
         Close();
     }
 }

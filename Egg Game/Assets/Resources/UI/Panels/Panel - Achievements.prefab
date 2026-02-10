@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -363}
+  m_AnchoredPosition: {x: 10, y: -342}
   m_SizeDelta: {x: 232.8827, y: 57.4749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8167676342564152081
@@ -168,8 +168,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 133, y: 0}
+  m_SizeDelta: {x: -212.9587, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3129872066059995149
 CanvasRenderer:
@@ -335,8 +335,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00039332683, y: 0}
-  m_SizeDelta: {x: 0, y: 483.75}
+  m_AnchoredPosition: {x: -0.00022359553, y: -130}
+  m_SizeDelta: {x: 0, y: 204.2303}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &9009387781230924810
 MonoBehaviour:
@@ -358,8 +358,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 482, y: 500}
-  m_Spacing: {x: 100, y: 0}
+  m_CellSize: {x: 230, y: 230}
+  m_Spacing: {x: 43.9, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
 --- !u!114 &1608685909787619831
@@ -517,7 +517,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -52.999634}
+  m_AnchoredPosition: {x: 0, y: -84}
   m_SizeDelta: {x: 525.2501, y: 84.6154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &944150548997982692
@@ -629,6 +629,7 @@ GameObject:
   - component: {fileID: 6846365015278780834}
   - component: {fileID: 5789001988172296118}
   - component: {fileID: 4875935110296965984}
+  - component: {fileID: 1061064061703905669}
   m_Layer: 5
   m_Name: Panel - Achievements
   m_TagString: Untagged
@@ -676,11 +677,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136087d2f750c9b479d4f26e5f760a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destroyOnClose: 0
-  _eggAchievementPrefabs: {fileID: 4726213052075532165, guid: 3d124bac429dcf84c84384ded18018c5, type: 3}
-  _unlockedCellPrefabs: {fileID: 8041593868533295911, guid: 3e76f08ab7a64c24f8632a7694bc9433, type: 3}
-  _notUnlockedCellPrefabs: {fileID: 6009897852309715914, guid: 9cad842c24445224996e41a1b140ff51, type: 3}
-  _achievementsScrollViewContent: {fileID: 6034303473562336498}
+  _destroyOnClose: 1
+  _eggAchievementPrefab: {fileID: 4726213052075532165, guid: 3d124bac429dcf84c84384ded18018c5, type: 3}
+  _unlockedCellPrefab: {fileID: 8041593868533295911, guid: 3e76f08ab7a64c24f8632a7694bc9433, type: 3}
+  _notUnlockedCellPrefab: {fileID: 6009897852309715914, guid: 9cad842c24445224996e41a1b140ff51, type: 3}
+  _achievementsScrollViewContent: {fileID: 4777053314017866998}
 --- !u!114 &4875935110296965984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,6 +712,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &1061064061703905669
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8135202528395766517}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d63a59c55c98e7f4aaae460f4c15a424, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9082011983995007755
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -148.99976}
+  m_AnchoredPosition: {x: 0, y: -197}
   m_SizeDelta: {x: 525.2501, y: 84.6154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6993302502314197011
@@ -776,7 +798,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Try to get all dragon!
+  m_text: Try to get all dragon !
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d7b94a338037e9046a5d5504d2240573, type: 2}
   m_sharedMaterial: {fileID: -4258173269060414458, guid: d7b94a338037e9046a5d5504d2240573, type: 2}
@@ -803,8 +825,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.9
-  m_fontSizeBase: 48.9
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0

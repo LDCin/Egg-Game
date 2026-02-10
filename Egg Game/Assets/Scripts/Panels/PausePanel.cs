@@ -18,28 +18,34 @@ public class PausePanel : Panel
     }
     public void OpenFacebookLink()
     {
+        SoundManager.Instance.PlayClickSound();
         Application.OpenURL(GameConfig.FACEBOOK_LINK);
     }
     public void OpenRatePage()
     {
+        SoundManager.Instance.PlayClickSound();
         Application.OpenURL(GameConfig.GITHUB_LINK);
     }
     public void OpenInforPage()
     {
+        SoundManager.Instance.PlayClickSound();
         Application.OpenURL(GameConfig.PROPTIT_FACEBOOK_LINK);
     }
     public void ReturnToGame()
     {
+        SoundManager.Instance.PlayClickSound();
         Time.timeScale = 1;
         Close();
     }
     public void ChangeSFXState()
     {
+        SoundManager.Instance.PlayClickSound();
         SoundManager.Instance.ChangeSFXState();
         ChangeSFXSprite();
     }
     public void ChangeSFXSprite()
     {
+        SoundManager.Instance.PlayClickSound();
         if (GameConfig.SFX_STATE == 1)
         {
             _SFXButton.image.sprite = _onSFXSprite;
@@ -52,11 +58,13 @@ public class PausePanel : Panel
     }
     public void ChangeBGMState()
     {
+        SoundManager.Instance.PlayClickSound();
         SoundManager.Instance.ChangeBGMState();
         ChangeBGMSprite();
     }
     public void ChangeBGMSprite()
     {
+        SoundManager.Instance.PlayClickSound();
         if (GameConfig.BGM_STATE == 1)
         {
             _BGMButton.image.sprite = _onBGMSprite;
@@ -69,6 +77,6 @@ public class PausePanel : Panel
     }
     public void OpenNoAdsPage()
     {
-
+        SoundManager.Instance.PlayClickSound();
     }
 }

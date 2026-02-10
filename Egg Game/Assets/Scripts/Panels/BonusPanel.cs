@@ -8,18 +8,19 @@ public class BonusPanel : Panel
 {
     public void Gift()
     {
-        
+        SoundManager.Instance.PlayClickSound();
     }
     public void Arcade()
     {
-        
+        SoundManager.Instance.PlayClickSound();
     }
     public void Flash()
     {
-        
+        SoundManager.Instance.PlayClickSound();
     }
     public void Back()
     {
+        SoundManager.Instance.PlayClickSound();
         Close();
     }
 }

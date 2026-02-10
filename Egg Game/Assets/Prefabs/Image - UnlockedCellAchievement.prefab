@@ -58,8 +58,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab326ebe38004140a95f6eb3e7e01fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _egg: {fileID: 0}
+  _egg: {fileID: 7717509619936857684, guid: 7a572388fc25b8a45b984118ad7b669e, type: 3}
   _moveDistance: 0.009
+  _image: {fileID: 3982028175414664012}
 --- !u!114 &3982028175414664012
 MonoBehaviour:
   m_ObjectHideFlags: 0

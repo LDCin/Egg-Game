@@ -11,6 +11,8 @@ public class Cell : MonoBehaviour
     [SerializeField] private Egg _egg;
     private Color _firstSpriteColor;
     [SerializeField] float _moveDistance = 0.009f;
+
+    [Header("UI")]
     [SerializeField] private Image _image;
     private void Awake()
     {
@@ -62,5 +64,5 @@ public class Cell : MonoBehaviour
         _spriteRenderer.color = _firstSpriteColor;
         transform.DOMoveY(transform.position.y - _moveDistance, 0.3f).SetEase(Ease.OutQuad);
     }
-    
+
 }
